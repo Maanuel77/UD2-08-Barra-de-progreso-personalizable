@@ -1,8 +1,11 @@
 <div class="progress" role="progressbar" aria-label="Barra de progreso"
+     [style.height.px]="height()"
      [attr.aria-valuenow]="value()" aria-valuemin="0" aria-valuemax="100">
-  <div class="progress-bar"
-       [class]="isBootstrapColor() ? 'progress-bar bg-' + color() : 'progress-bar'"
+  <div [class]="barClasses()"
        [style.width.%]="value()"
        [style.background-color]="isBootstrapColor() ? null : color()">
+    @if (showLabel()) {
+      {{ value() }}%
+    }
   </div>
 </div>
