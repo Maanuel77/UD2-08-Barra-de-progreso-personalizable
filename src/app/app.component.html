@@ -1,3 +1,56 @@
 <div class="container py-5">
   <h1 class="mb-4">Barra de progreso personalizable</h1>
+
+  <section class="card mb-4">
+    <div class="card-body">
+      <h2 class="h5">Ejemplos</h2>
+      <app-custom-progress-bar class="d-block mb-3" [value]="25" />
+      <app-custom-progress-bar class="d-block mb-3" [value]="50" color="success" showLabel />
+      <app-custom-progress-bar class="d-block mb-3" [value]="75" color="warning" striped showLabel />
+      <app-custom-progress-bar class="d-block mb-3" [value]="90" color="danger" striped animated showLabel />
+      <app-custom-progress-bar class="d-block" [value]="60" color="#e91e63" [height]="30" showLabel />
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-body">
+      <h2 class="h5">Playground</h2>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <label class="form-label" for="value">Valor: {{ value }}%</label>
+          <input id="value" type="range" class="form-range" min="0" max="100" [(ngModel)]="value">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="color">Color</label>
+          <select id="color" class="form-select" [(ngModel)]="color">
+            @for (c of colors; track c) {
+              <option [value]="c">{{ c }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="height">Altura (px)</label>
+          <input id="height" type="number" class="form-control" min="5" max="60" [(ngModel)]="height">
+        </div>
+        <div class="col-12 d-flex gap-4">
+          <div class="form-check">
+            <input id="striped" class="form-check-input" type="checkbox" [(ngModel)]="striped">
+            <label class="form-check-label" for="striped">Striped</label>
+          </div>
+          <div class="form-check">
+            <input id="animated" class="form-check-input" type="checkbox" [(ngModel)]="animated">
+            <label class="form-check-label" for="animated">Animated</label>
+          </div>
+          <div class="form-check">
+            <input id="label" class="form-check-input" type="checkbox" [(ngModel)]="showLabel">
+            <label class="form-check-label" for="label">Mostrar porcentaje</label>
+          </div>
+        </div>
+      </div>
+
+      <app-custom-progress-bar
+        [value]="value" [color]="color" [striped]="striped"
+        [animated]="animated" [showLabel]="showLabel" [height]="height" />
+    </div>
+  </section>
 </div>
